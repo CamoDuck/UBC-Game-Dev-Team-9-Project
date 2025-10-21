@@ -4,6 +4,7 @@ Team members:
 - Andrew Zhu
 - Alwyn Mui
 - Ruoyu Xu
+- Alwyn Mui
 - Maysam Farahani
 - Khang Nguyen
 - Zach Fulton
