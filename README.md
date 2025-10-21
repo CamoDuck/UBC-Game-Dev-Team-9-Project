@@ -4,3 +4,4 @@ Team members:
 - Andrew Zhu
 - Alwyn Mui
 - Ruoyu Xu
+- Khang Nguyen
