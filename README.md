@@ -5,3 +5,4 @@ Team members:
 - Alwyn Mui
 - Ruoyu Xu
 - Khang Nguyen
+- Zach Fulton
