@@ -15,3 +15,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Visual Studio ignores
+.vs/
+
+# OS-specific ignores
+.DS_Store
