@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2e3lexeet7np"]
+[gd_scene load_steps=6 format=3 uid="uid://b2e3lexeet7np"]
 
 [ext_resource type="Script" uid="uid://bvbl4a8xrt3uf" path="res://Scripts/Player/PlayerController.cs" id="1_or1m2"]
-[ext_resource type="Texture2D" uid="uid://dxn1gq0smbu3x" path="res://Assets/Image/Player/Player_TEMP.jpg" id="2_i8vu6"]
+[ext_resource type="Texture2D" uid="uid://dxn1gq0smbu3x" path="res://Resources/Images/Player/Player_TEMP.jpg" id="2_i8vu6"]
+[ext_resource type="PackedScene" uid="uid://be6wlq1op47b0" path="res://Scenes/gravity.tscn" id="3_dl1v4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yji26"]
 radius = 40.0
@@ -20,11 +21,6 @@ animations = [{
 
 [node name="PlayerController" type="CharacterBody2D"]
 script = ExtResource("1_or1m2")
-Speed = null
-MaxJumpSpeed = null
-MinJumpSpeed = 125.0
-MaxJumpTime = 0.3
-MinJumpTime = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_yji26")
@@ -32,3 +28,5 @@ shape = SubResource("CapsuleShape2D_yji26")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_42pl1")
+
+[node name="Gravity" parent="." instance=ExtResource("3_dl1v4")]
