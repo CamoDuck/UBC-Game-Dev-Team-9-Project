@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkubihkbhps5g"]
+
+[ext_resource type="PackedScene" uid="uid://b2e3lexeet7np" path="res://Scenes/player_controller.tscn" id="1_3321y"]
+[ext_resource type="PackedScene" uid="uid://b34s660y31s1n" path="res://Scenes/Combat/Health.tscn" id="2_8djon"]
+[ext_resource type="PackedScene" uid="uid://be6wlq1op47b0" path="res://Scenes/gravity.tscn" id="2_jd4wd"]
+[ext_resource type="Script" uid="uid://dky0tm4t15v2s" path="res://Scripts/Combat/Enemy.cs" id="3_muu3f"]
+[ext_resource type="Texture2D" uid="uid://dxn1gq0smbu3x" path="res://Resources/Images/Player/Player_TEMP.jpg" id="4_gbw4v"]
+[ext_resource type="PackedScene" uid="uid://u7feqii6vqim" path="res://Scenes/Combat/AttackSource.tscn" id="5_gbw4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd4wd"]
+size = Vector2(1336, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbw4v"]
+size = Vector2(128, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nibn"]
+size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_muu3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_gbw4v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muu3f"]
+size = Vector2(128, 130)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_muu3f"]
+radius = 218.38727
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7nibn"]
+
+[node name="CombatTest" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(516, 493)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(141, 10)
+shape = SubResource("RectangleShape2D_jd4wd")
+
+[node name="PlayerController" parent="." instance=ExtResource("1_3321y")]
+position = Vector2(142, 403)
+
+[node name="Health" parent="PlayerController" instance=ExtResource("2_8djon")]
+
+[node name="Hitbox" type="Area2D" parent="PlayerController/Health"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerController/Health/Hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_gbw4v")
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(709, 409)
+script = ExtResource("3_muu3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_7nibn")
+
+[node name="Gravity" parent="Enemy" instance=ExtResource("2_jd4wd")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_muu3f")
+
+[node name="Health" parent="Enemy" instance=ExtResource("2_8djon")]
+
+[node name="Hitbox" type="Area2D" parent="Enemy/Health"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Health/Hitbox"]
+shape = SubResource("RectangleShape2D_muu3f")
+
+[node name="AttackSource" parent="Enemy" instance=ExtResource("5_gbw4v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AttackSource"]
+position = Vector2(-60, 0)
+shape = SubResource("CircleShape2D_muu3f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy/AttackSource"]
+sprite_frames = SubResource("SpriteFrames_7nibn")

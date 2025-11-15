@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b34s660y31s1n"]
+
+[ext_resource type="Script" uid="uid://er14nnc6tdhi" path="res://Scripts/Combat/Health.cs" id="1_hfmvk"]
+[ext_resource type="Script" uid="uid://cs3gi37omwva5" path="res://Scripts/Combat/Attack.cs" id="2_k86de"]
+
+[node name="Health" type="Node2D"]
+script = ExtResource("1_hfmvk")
+
+[node name="Attack" type="Node2D" parent="."]
+script = ExtResource("2_k86de")

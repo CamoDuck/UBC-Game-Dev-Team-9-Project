@@ -19,5 +19,9 @@ mono_crash.*.json
 # Visual Studio ignores
 .vs/
 
+# Jetbrains Rider ignores
+**/.idea/
+
+
 # OS-specific ignores
 .DS_Store

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://u7feqii6vqim"]
+
+[ext_resource type="Script" uid="uid://dpevu7k75xegd" path="res://Scripts/Combat/AttackSource.cs" id="1_vjodv"]
+
+[node name="AttackSource" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_vjodv")
