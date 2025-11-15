@@ -38,7 +38,7 @@ public partial class Attack : Node2D
 	{
 		Console.WriteLine("Hit " + body.Name);
 		if (!IsActive || body is not AttackSource attackSource) return;
-		if (!attackSource.SelfDamage && attackSource.Parent == Parent) return; // Prevent self-damage
+		if (!attackSource.SelfDamage && attackSource.Parent == Parent.Parent) return; // Prevent self-damage
 		Parent.TakeDamage(CalculateDamage(attackSource), attackSource);
 	}
 	

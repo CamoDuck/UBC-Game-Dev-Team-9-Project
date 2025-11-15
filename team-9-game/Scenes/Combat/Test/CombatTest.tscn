@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkubihkbhps5g"]
+[gd_scene load_steps=12 format=3 uid="uid://dkubihkbhps5g"]
 
 [ext_resource type="PackedScene" uid="uid://b2e3lexeet7np" path="res://Scenes/player_controller.tscn" id="1_3321y"]
+[ext_resource type="Script" uid="uid://c6hr67cmncmqf" path="res://Scripts/Combat/Test/PlayerTESTcs.cs" id="2_7nibn"]
 [ext_resource type="PackedScene" uid="uid://b34s660y31s1n" path="res://Scenes/Combat/Health.tscn" id="2_8djon"]
 [ext_resource type="PackedScene" uid="uid://be6wlq1op47b0" path="res://Scenes/gravity.tscn" id="2_jd4wd"]
-[ext_resource type="Script" uid="uid://dky0tm4t15v2s" path="res://Scripts/Combat/Enemy.cs" id="3_muu3f"]
+[ext_resource type="Script" uid="uid://dky0tm4t15v2s" path="res://Scripts/Combat/Test/Enemy.cs" id="3_muu3f"]
 [ext_resource type="Texture2D" uid="uid://dxn1gq0smbu3x" path="res://Resources/Images/Player/Player_TEMP.jpg" id="4_gbw4v"]
-[ext_resource type="PackedScene" uid="uid://u7feqii6vqim" path="res://Scenes/Combat/AttackSource.tscn" id="5_gbw4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jd4wd"]
 size = Vector2(1336, 40)
@@ -30,11 +30,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_muu3f"]
 size = Vector2(128, 130)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_muu3f"]
-radius = 218.38727
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7nibn"]
-
 [node name="CombatTest" type="Node2D"]
 
 [node name="Floor" type="StaticBody2D" parent="."]
@@ -44,16 +39,17 @@ position = Vector2(516, 493)
 position = Vector2(141, 10)
 shape = SubResource("RectangleShape2D_jd4wd")
 
-[node name="PlayerController" parent="." instance=ExtResource("1_3321y")]
+[node name="Player" parent="." instance=ExtResource("1_3321y")]
 position = Vector2(142, 403)
+script = ExtResource("2_7nibn")
 
-[node name="Health" parent="PlayerController" instance=ExtResource("2_8djon")]
+[node name="Health" parent="Player" instance=ExtResource("2_8djon")]
 
-[node name="Hitbox" type="Area2D" parent="PlayerController/Health"]
+[node name="Hitbox" type="Area2D" parent="Player/Health"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerController/Health/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Health/Hitbox"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_gbw4v")
 
@@ -78,12 +74,3 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Health/Hitbox"]
 shape = SubResource("RectangleShape2D_muu3f")
-
-[node name="AttackSource" parent="Enemy" instance=ExtResource("5_gbw4v")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AttackSource"]
-position = Vector2(-60, 0)
-shape = SubResource("CircleShape2D_muu3f")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy/AttackSource"]
-sprite_frames = SubResource("SpriteFrames_7nibn")

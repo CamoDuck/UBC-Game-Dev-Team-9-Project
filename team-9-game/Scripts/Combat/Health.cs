@@ -49,8 +49,7 @@ public partial class Health : Node2D
 		CurrentHealth = 100;
 		this.OnDeath += () => 
 		{
-			Console.WriteLine("Entity has died.");
-			Process.GetCurrentProcess().Kill();
+			Parent.QueueFree();
 		};
 	}
 	
