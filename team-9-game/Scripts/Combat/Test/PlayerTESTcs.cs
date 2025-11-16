@@ -14,7 +14,8 @@ public partial class PlayerTESTcs: PlayerController
 	{
 		var scene = ResourceLoader.Load<PackedScene>("res://Scenes/Combat/Test/melee_attack.tscn");
 		var attack = scene.Instantiate<MeleeAttack>();
-		attack.AttackPower = 100;
+		attack.LeftSide = false;
+		attack.AttackPower = 50;
 		this.AddChild(attack);
 	}
 
