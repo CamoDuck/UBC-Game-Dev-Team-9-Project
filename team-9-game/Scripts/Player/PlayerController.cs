@@ -3,6 +3,7 @@ using System;
 
 public partial class PlayerController : CharacterBody2D
 {
+    [Export] public ForceManager forceManager;
     [Export]
     public float walkSpeed { get; set; } = 400;
 
@@ -12,6 +13,7 @@ public partial class PlayerController : CharacterBody2D
     [Export]
     public float jumpImpulse { get; set; } = 1000;
 
+    public Vector2 lastMoveDirection = Vector2.Right;
 
 
     // Called when the node enters the scene tree for the first time.
@@ -31,6 +33,12 @@ public partial class PlayerController : CharacterBody2D
     ///</summary>
     private void KeyMovementProcess(double delta)
     {
+        UpdateMoveVelocity();
+        UpdateLastMoveDirection();
+    }
+
+    private void UpdateMoveVelocity()
+    {
         float X = 0, Y = Velocity.Y;
         if (Input.IsActionPressed("move_left"))
         {
@@ -46,6 +54,14 @@ public partial class PlayerController : CharacterBody2D
         }
 
         Velocity = new Vector2(X, Y);
+    }
+
+    private void UpdateLastMoveDirection()
+    {
+        if (Math.Abs(Velocity.X) > 0)
+        {
+            lastMoveDirection = new Vector2(Velocity.X, 0);
+        }
     }
 
     /// <summary>

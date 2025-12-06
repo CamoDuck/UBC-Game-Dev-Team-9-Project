@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2e3lexeet7np"]
+[gd_scene load_steps=8 format=3 uid="uid://b2e3lexeet7np"]
 
 [ext_resource type="Script" uid="uid://bvbl4a8xrt3uf" path="res://Scripts/Player/PlayerController.cs" id="1_or1m2"]
 [ext_resource type="Texture2D" uid="uid://dxn1gq0smbu3x" path="res://Resources/Images/Player/Player_TEMP.jpg" id="2_i8vu6"]
 [ext_resource type="PackedScene" uid="uid://be6wlq1op47b0" path="res://Scenes/gravity.tscn" id="3_dl1v4"]
+[ext_resource type="PackedScene" uid="uid://brc4utjebw43m" path="res://Scenes/dash.tscn" id="4_bnokr"]
+[ext_resource type="PackedScene" uid="uid://cmfkv5jb1g7vj" path="res://Scenes/force_manager.tscn" id="5_1esxm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yji26"]
 radius = 40.0
@@ -19,8 +21,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PlayerController" type="CharacterBody2D"]
+[node name="PlayerController" type="CharacterBody2D" node_paths=PackedStringArray("forceManager")]
 script = ExtResource("1_or1m2")
+forceManager = NodePath("ForceManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_yji26")
@@ -30,3 +33,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_42pl1")
 
 [node name="Gravity" parent="." instance=ExtResource("3_dl1v4")]
+
+[node name="Dash" parent="." instance=ExtResource("4_bnokr")]
+
+[node name="ForceManager" parent="." instance=ExtResource("5_1esxm")]
