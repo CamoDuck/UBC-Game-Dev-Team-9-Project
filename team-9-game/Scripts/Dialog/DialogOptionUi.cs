@@ -18,6 +18,10 @@ public partial class DialogOptionUi : Control
 	
 	private DialogRunner runner;
 
+	private bool _allowAdvanceByKey = false;
+
+	private bool _ignoreFirstNextRelease = false;
+
 	#region UIInitialize
 	[Export]
 	public VBoxContainer ChoicesStack { get; set; }
@@ -37,7 +41,7 @@ public partial class DialogOptionUi : Control
 		
 		//Here, initialize everything
 		
-		context = new DialogContext();
+		context = new DialogContext(DialogueData.Data.AsGodotDictionary());
 		runner = new DialogRunner(context);
 		if (string.IsNullOrEmpty(StartFrom)) 
 			runner.Start();
@@ -51,6 +55,11 @@ public partial class DialogOptionUi : Control
 	
 	public override void _Process(double delta)
 	{
+		if (Input.IsActionJustReleased("dialog_next") && 
+			_allowAdvanceByKey && 
+			_ignoreFirstNextRelease)
+			ChoiceSelected(0);
+		_ignoreFirstNextRelease = true;
 	}
 
 	private void Update()
@@ -60,14 +69,7 @@ public partial class DialogOptionUi : Control
 		var speakers = runner.Speakers;
 		SpeakerLabel.Text = string.Join('&', speakers);
 		ClearChoices();
-		var ind = 0;
-		foreach (var choice in choices)
-		{
-			var choiceBtn = NewChoiceUI(choice, ind++);
-			choiceBtn.Pressed += () => OnChoiceSelected(choiceBtn);
-			ChoicesStack.AddChild(choiceBtn);
-		}
-
+		InitializeChoice(choices);
 		BackgroundImage.Texture = runner.CurrentImage;
 	}
 
@@ -88,12 +90,33 @@ public partial class DialogOptionUi : Control
 	}
 
 	private void OnChoiceSelected(DialogChoiceUI btn)
+		=> ChoiceSelected(btn.ChoiceIndex);
+
+	private void ChoiceSelected(int index)
 	{
-		if (runner.Next(btn.ChoiceIndex))
+		if (runner.Next(index))
 		{
 			EmitSignalDialogFinished();
 			return;
 		}
 		Update();
+	}
+
+	private void InitializeChoice(string[] choices)
+	{
+		if (choices.Length == 1 && choices[0] == string.Empty)
+		{
+			_allowAdvanceByKey = true;
+			_ignoreFirstNextRelease = false;
+			return;
+		}
+		_allowAdvanceByKey = false;
+		var ind = 0;
+		foreach (var choice in choices)
+		{
+			var choiceBtn = NewChoiceUI(choice, ind++);
+			choiceBtn.Pressed += () => OnChoiceSelected(choiceBtn);
+			ChoicesStack.AddChild(choiceBtn);
+		}
 	}
 }

@@ -23,7 +23,7 @@
 		],
 		[
 		  "bye",
-          "step_3"
+          "step_4"
 		]
 	  ]
 	},
@@ -51,6 +51,19 @@
 		[
 		  "sure",
           "end"
+		]
+	  ]
+	},
+	{
+	  "id": "step_4",
+	  "text": "what?",
+	  "speaker": [
+        "narrator"
+	  ],
+	  "options": [
+		[
+		  "",
+          "step_3"
 		]
 	  ]
 	}

@@ -12,13 +12,13 @@ public class DialogNode
     public string ID { get; private set; }
         
     public string Text { get; private set; }
-        
+
     /// <summary>
     /// If there is only one response,
     /// it means there is no choice to be made,
     /// and the dialog will proceed automatically.
     /// </summary>
-    public List<(string option, string value)> Options { get; private set; }
+    public List<(string option, string value)> Options = [];
         
     public string[] Speaker { get; private set; }
 

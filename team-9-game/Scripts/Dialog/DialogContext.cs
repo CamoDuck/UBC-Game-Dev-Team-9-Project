@@ -9,19 +9,19 @@ public class DialogContext
     public string Title { get; private set; }
     
     public string ID { get; private set; }
-    
-    public System.Collections.Generic.Dictionary<string, DialogNode> Nodes { get; private set; }
+
+    public System.Collections.Generic.Dictionary<string, DialogNode> Nodes = [];
     
     public string StartID { get;private set; }
     
     public string InitialBackGroundUri { get; private set; }
-    
+
     /// <summary>
     /// key: character name
     /// <br/>
     /// value: character portrait uri
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, string> Characters { get; private set; }
+    public System.Collections.Generic.Dictionary<string, string> Characters = [];
 
     public DialogContext(Dictionary dialogData)
     {
