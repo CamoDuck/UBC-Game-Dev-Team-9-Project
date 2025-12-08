@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://eij6egl5miyd"]
+
+[ext_resource type="Script" uid="uid://cbjo1spcobrqr" path="res://Scripts/Dialog/DialogChoiceUI.cs" id="1_d7yec"]
+
+[node name="DialogChoiceUI" type="TextureButton" node_paths=PackedStringArray("ChoiceLabel")]
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d7yec")
+ChoiceLabel = NodePath("ChoiceLabel")
+
+[node name="ChoiceLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 33
+text = "Your First Choice"
+horizontal_alignment = 1
+vertical_alignment = 1

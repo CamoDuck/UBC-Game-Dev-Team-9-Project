@@ -1,0 +1,58 @@
+{
+  "type": "dialog",
+  "id": "dialog_example_001",
+  "title": "Example Dialog",
+  "background": "res://...",
+  "startId": "step_1",
+  "characters": {
+	"narrator": "res://...",
+	"narrator1": "res://...",
+	"narrator2": "res://..."
+  },
+  "nodes": [
+	{
+	  "id": "step_1",
+	  "text": "hello world",
+	  "speaker": [
+        "narrator"
+	  ],
+	  "options": [
+		[
+		  "hello",
+          "step_2"
+		],
+		[
+		  "bye",
+          "step_3"
+		]
+	  ]
+	},
+	{
+	  "id": "step_2",
+	  "text": "ok, so bye!",
+	  "speaker": [
+        "narrator2"
+	  ],
+	  "//": "end means the dialog goes to an end",
+	  "options": [
+		[
+		  "",
+          "end"
+		]
+	  ]
+	},
+	{
+	  "id": "step_3",
+	  "text": "bye!",
+	  "speaker": [
+        "narrator"
+	  ],
+	  "options": [
+		[
+		  "sure",
+          "end"
+		]
+	  ]
+	}
+  ]
+}

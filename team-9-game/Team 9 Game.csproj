@@ -10,6 +10,7 @@
     <Content Include="Scripts\Combat\AttackCalculator.cs.uid" />
     <Content Include="Scripts\Combat\AttackSource.cs.uid" />
     <Content Include="Scripts\Combat\Health.cs.uid" />
+    <Content Include="Scripts\Dialog\Example\DialogExample.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Combat\Test\" />
