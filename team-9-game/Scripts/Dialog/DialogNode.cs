@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using Godot.Collections;
 
@@ -26,16 +27,20 @@ public class DialogNode
     /// If it is an empty string or invalid, the background image will
     /// not change.
     /// </summary>
-    public string BackgroundUri { get; private set; } = "";
-    
-    public DialogNode() {}
+    public string? BackgroundChange  = null;
 
+    public System.Collections.Generic.Dictionary<string, string>? SpeakerChanges = null;
+    
+    public string? TitleChange = null;
+
+    public DialogNode(){}
+    
     public DialogNode(Dictionary data)
     {
         ID = data["id"].AsString();
         Text = data["text"].AsString();
         Speaker = data["speaker"].AsStringArray();
-        BackgroundUri = data.GetValueOrDefault("background").AsString();
+        BackgroundChange = data.GetValueOrDefault("background").AsString();
         InitializeOptions(data["options"].AsGodotArray());
     }
 
@@ -45,6 +50,36 @@ public class DialogNode
         {
             var opts = item.AsStringArray();
             Options.Add((opts[0], opts[1]));
+        }
+    }
+
+    private void InitializeChanges(Dictionary data)
+    {
+        foreach (var item in data)
+        {
+            var key = item.Key.AsString();
+            var value = item.Value;
+            switch (key)
+            {
+                case "background":
+                    BackgroundChange = value.AsString();
+                    break;
+                case "speakers":
+                    InitializeSpeakerChanges(value.AsGodotDictionary());
+                    break;
+                case "title":
+                    TitleChange = value.AsString();
+                    break;
+            }
+        }
+    }
+    
+    private void InitializeSpeakerChanges(Dictionary data)
+    {
+        SpeakerChanges = [];
+        foreach (var item in data)
+        {
+            SpeakerChanges[item.Key.AsString()] = item.Value.AsString();
         }
     }
 }

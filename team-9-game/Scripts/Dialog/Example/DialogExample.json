@@ -65,7 +65,13 @@
 		  "",
           "step_3"
 		]
-	  ]
+	  ],
+      "changes": {
+        "background": "",
+        "speakers": {
+          "narrator1": ""
+        }
+      }
 	}
   ]
 }

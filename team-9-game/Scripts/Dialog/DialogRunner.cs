@@ -11,8 +11,10 @@ public class DialogRunner(DialogContext context)
     
     private DialogNode _currentNode = new();
 
-    public Dictionary<string, Texture2D> Characters { get; private set; }
+    public Dictionary<string, Texture2D> SpeakerPortraits { get; private set; }
         = GetPortrait(context.Characters);
+    
+    public string Title { get; private set; }
 
     public string[] Choices => _currentNode.Options.Select(a => a.option).ToArray();
 
@@ -25,13 +27,15 @@ public class DialogRunner(DialogContext context)
     public void Start()
     {
         _currentNode = _context.Nodes[_context.StartID];
-        UpdateBackground();
+        Title = _context.Title;
+        Update();
     }
 
     public void StartFrom(string id)
     {
         _currentNode = _context.Nodes[id];
-        UpdateBackground();
+        Title = _context.Title;
+        Update();
     }
 
     /// <summary>
@@ -44,17 +48,24 @@ public class DialogRunner(DialogContext context)
         var id = _currentNode.Options[choiceIndex].value;
         if (id == "end") return true;
         _currentNode = _context.Nodes[id];
-        UpdateBackground();
+        Update();
         return false;
+    }
+
+    private void Update()
+    {
+        UpdateBackground();
+        UpdateTitle();
+        UpdatePortrait();
     }
 
     private void UpdateBackground()
     {
-        var uri = _currentNode.BackgroundUri;
-        if (uri == "") return;
+        var uri = _currentNode.BackgroundChange;
+        if (uri is null) return;
         try
         {
-            CurrentImage = ResourceLoader.Load<Texture2D>(uri);
+            CurrentImage = GD.Load<Texture2D>(uri);
         }
         catch
         {
@@ -62,14 +73,40 @@ public class DialogRunner(DialogContext context)
         }
     }
 
+    private void UpdateTitle()
+    {
+        var txt = _currentNode.TitleChange;
+        if (txt is null) return;
+        Title = txt;
+    }
+
+    private void UpdatePortrait()
+    {
+        var speakers =  _currentNode.SpeakerChanges;
+        if (speakers is null) return;
+        foreach (var (key, value) in speakers)
+        {
+            try
+            {
+                var texture = GD.Load<Texture2D>(value);
+                SpeakerPortraits[key] = texture;
+            }
+            catch
+            {
+                //ignore
+            }
+            
+        }
+    }
+
     private static Dictionary<string, Texture2D> GetPortrait(Dictionary<string, string> characters)
     {
         Dictionary<string, Texture2D> ret = [];
-        foreach (var chr in characters)
+        // Wow, new syntax!
+        foreach (var (key, uri) in characters)
         {
-            var uri = chr.Value;
-            var texture = ResourceLoader.Load<Texture2D>(uri);
-            ret[chr.Key] = texture;
+            var texture = GD.Load<Texture2D>(uri);
+            ret[key] = texture;
         }
         return ret;
     }
