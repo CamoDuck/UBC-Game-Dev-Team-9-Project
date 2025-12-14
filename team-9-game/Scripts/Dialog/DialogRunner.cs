@@ -24,6 +24,9 @@ public class DialogRunner(DialogContext context)
     
     private readonly DialogContext _context = context;
 
+    public bool NoChoices => _currentNode.Options.Count == 1
+        && string.IsNullOrEmpty(_currentNode.Options.First().option);
+
     public void Start()
     {
         _currentNode = _context.Nodes[_context.StartID];
@@ -62,7 +65,7 @@ public class DialogRunner(DialogContext context)
     private void UpdateBackground()
     {
         var uri = _currentNode.BackgroundChange;
-        if (uri is null) return;
+        if (string.IsNullOrEmpty(uri)) return;
         try
         {
             CurrentImage = GD.Load<Texture2D>(uri);
@@ -76,7 +79,7 @@ public class DialogRunner(DialogContext context)
     private void UpdateTitle()
     {
         var txt = _currentNode.TitleChange;
-        if (txt is null) return;
+        if (string.IsNullOrEmpty(txt)) return;
         Title = txt;
     }
 

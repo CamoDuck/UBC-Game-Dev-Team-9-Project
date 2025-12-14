@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Diagnostics;
 using Team9Game.Scripts.Dialog;
 
 public partial class DialogOptionUi : Control
@@ -18,9 +16,9 @@ public partial class DialogOptionUi : Control
 	
 	private DialogRunner runner;
 
-	private bool _allowAdvanceByKey = false;
+	private bool _allowAdvanceByKey;
 
-	private bool _ignoreFirstNextRelease = false;
+	private bool _ignoreFirstNextRelease;
 
 	#region UIInitialize
 	[Export]
@@ -34,55 +32,68 @@ public partial class DialogOptionUi : Control
 	
 	[Export]
 	public TextureRect BackgroundImage { get; set; }
+	
+	[Export]
+	public HBoxContainer SpeakerStack { get; set; }
 	#endregion
 	
 	public override void _Ready()
 	{
-		
 		//Here, initialize everything
-		
 		context = new DialogContext(DialogueData.Data.AsGodotDictionary());
 		runner = new DialogRunner(context);
 		if (string.IsNullOrEmpty(StartFrom)) 
 			runner.Start();
 		else runner.StartFrom(StartFrom);
-		//var file = FileAccess.Open(DialogueJsonPath, FileAccess.ModeFlags.Read);
-		//var jsonText = file.GetAsText();
-
-		//var json = Json.ParseString(jsonText).AsGodotDictionary();
 		Update();
 	}
 	
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustReleased("dialog_next") && 
-			_allowAdvanceByKey && 
-			_ignoreFirstNextRelease)
-			ChoiceSelected(0);
+		if (Input.IsActionJustReleased("dialog_next") && _ignoreFirstNextRelease)
+		{
+			if (runner.NoChoices)//
+				ChoiceSelected(0);
+			else
+			{
+				UpdateChoice();
+				_ignoreFirstNextRelease = false;
+			}
+				
+		}
 		_ignoreFirstNextRelease = true;
 	}
 
 	private void Update()
 	{
-		var choices = runner.Choices;
+		BackgroundImage.Texture = runner.CurrentImage;
 		TextLabel.Text = runner.Text;
 		var speakers = runner.Speakers;
 		SpeakerLabel.Text = string.Join('&', speakers);
+		UpdateSpeakers();
 		ClearChoices();
-		InitializeChoice(choices);
-		BackgroundImage.Texture = runner.CurrentImage;
 	}
 
+	#region Choice Selection
 	private void ClearChoices()
+		=> ClearStack(ChoicesStack);
+	private void ClearStack(BoxContainer container)
 	{
-		var choices = ChoicesStack.GetChildren();
+		var choices = container.GetChildren();
 		foreach (var choice in choices)
 			choice.QueueFree();
 	}
 
+	private void UpdateChoice()
+	{
+		var choices = runner.Choices;
+		ClearChoices();
+		InitializeChoice(choices);
+	}
+
 	private DialogChoiceUI NewChoiceUI(string choice, int index)
 	{
-		var scene = ResourceLoader.Load<PackedScene>("res://Scenes/Dialog/DialogChoiceUI.tscn");
+		var scene = GD.Load<PackedScene>("res://Scenes/Dialog/DialogChoiceUI.tscn");
 		var ret = scene.Instantiate<DialogChoiceUI>();
 		ret.ChoiceIndex = index;
 		ret.ChoiceText = choice;
@@ -99,18 +110,14 @@ public partial class DialogOptionUi : Control
 			EmitSignalDialogFinished();
 			return;
 		}
+		_ignoreFirstNextRelease = false;
 		Update();
 	}
 
 	private void InitializeChoice(string[] choices)
 	{
-		if (choices.Length == 1 && choices[0] == string.Empty)
-		{
-			_allowAdvanceByKey = true;
-			_ignoreFirstNextRelease = false;
-			return;
-		}
-		_allowAdvanceByKey = false;
+
+		
 		var ind = 0;
 		foreach (var choice in choices)
 		{
@@ -119,4 +126,32 @@ public partial class DialogOptionUi : Control
 			ChoicesStack.AddChild(choiceBtn);
 		}
 	}
+	#endregion
+
+	#region Speakers
+
+	private void UpdateSpeakers()
+	{
+		ClearStack(SpeakerStack);
+		foreach (var speaker in runner.Speakers)
+		{
+			SpeakerStack.AddChild(
+				InitializeSpeakerShower(
+					runner.SpeakerPortraits[speaker]
+					));
+		}
+		
+	}
+
+
+	private DialogSpeakerShower InitializeSpeakerShower(Texture2D texture)
+	{
+		var tmp = GD.Load<PackedScene>("res://Scenes/Dialog/DialogSpeakerShower.tscn");
+		var ret = tmp.Instantiate<DialogSpeakerShower>();
+		ret.SpeakerTexture = texture;
+		return ret;
+	}
+		
+
+	#endregion
 }

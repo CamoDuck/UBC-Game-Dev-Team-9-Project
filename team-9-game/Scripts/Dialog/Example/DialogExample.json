@@ -2,12 +2,12 @@
   "type": "dialog",
   "id": "dialog_example_001",
   "title": "Example Dialog",
-  "background": "res://...",
+  "background": "res://Resources/Images/Dialog/Example/tmp/background_1.png",
   "startId": "step_1",
   "characters": {
-	"narrator": "res://...",
-	"narrator1": "res://...",
-	"narrator2": "res://..."
+	"narrator": "res://Resources/Images/Dialog/Example/tmp/S1.png",
+	"narrator1": "res://Resources/Images/Dialog/Example/tmp/S2.png",
+	"narrator2": "res://Resources/Images/Dialog/Example/tmp/S3.png"
   },
   "nodes": [
 	{
@@ -45,7 +45,8 @@
 	  "id": "step_3",
 	  "text": "bye!",
 	  "speaker": [
-        "narrator"
+		"narrator",
+        "narrator2"
 	  ],
 	  "options": [
 		[
@@ -58,7 +59,7 @@
 	  "id": "step_4",
 	  "text": "what?",
 	  "speaker": [
-        "narrator"
+        "narrator1"
 	  ],
 	  "options": [
 		[
@@ -66,12 +67,12 @@
           "step_3"
 		]
 	  ],
-      "changes": {
-        "background": "",
-        "speakers": {
-          "narrator1": ""
-        }
-      }
+	  "changes": {
+		"background": "res://Resources/Images/Dialog/Example/tmp/background_2.png",
+		"speakers": {
+		  "narrator1": "res://Resources/Images/Dialog/Example/tmp/S3.png"
+		}
+	  }
 	}
   ]
 }

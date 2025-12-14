@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://g2ay0jxx7j3c"]
 
 [ext_resource type="Script" uid="uid://bdo5g515mmve7" path="res://Scripts/Dialog/DialogOptionUi.cs" id="1_bsprr"]
-[ext_resource type="JSON" path="res://Scripts/Dialog/Example/DialogExample.json" id="2_m17jr"]
+[ext_resource type="Texture2D" uid="uid://bp5oi5smkga01" path="res://Resources/Images/Dialog/Example/tmp/text_background.png" id="3_6nals"]
 
-[node name="DialogOptionUI" type="Control" node_paths=PackedStringArray("ChoicesStack", "TextLabel", "SpeakerLabel", "BackgroundImage")]
+[node name="DialogOptionUI" type="Control" node_paths=PackedStringArray("ChoicesStack", "TextLabel", "SpeakerLabel", "BackgroundImage", "SpeakerStack")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,11 +11,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bsprr")
-DialogueData = ExtResource("2_m17jr")
 ChoicesStack = NodePath("VBoxContainer/ChoiceContainer/ChoiceVBox")
 TextLabel = NodePath("VBoxContainer/TextContainer/TextBackground/MarginContainer/TextLabel")
 SpeakerLabel = NodePath("VBoxContainer/TextContainer/TextBackground/MarginContainer/SpeakerLabel")
-BackgroundImage = NodePath("VBoxContainer/TextContainer/TextBackground")
+BackgroundImage = NodePath("Background")
+SpeakerStack = NodePath("MarginContainer/SpeakerStack")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -24,6 +24,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeakerStack" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -57,6 +72,8 @@ theme_override_constants/margin_bottom = 30
 
 [node name="TextBackground" type="TextureRect" parent="VBoxContainer/TextContainer"]
 layout_mode = 2
+texture = ExtResource("3_6nals")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TextContainer/TextBackground"]
 layout_mode = 1

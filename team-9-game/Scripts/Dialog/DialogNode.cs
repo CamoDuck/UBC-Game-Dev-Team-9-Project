@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
-using Godot.Collections;
+using GDictionary = Godot.Collections.Dictionary;
+using GArray = Godot.Collections.Array;
 
 namespace Team9Game.Scripts.Dialog;
 
@@ -10,9 +11,9 @@ public class DialogNode
     /// This is the ID for this dialog node.
     /// It should be unique within the dialog tree.
     /// </summary>
-    public string ID { get; private set; }
-        
-    public string Text { get; private set; }
+    public string ID { get; private set; } = "";
+
+    public string Text { get; private set; } = "";
 
     /// <summary>
     /// If there is only one response,
@@ -20,31 +21,32 @@ public class DialogNode
     /// and the dialog will proceed automatically.
     /// </summary>
     public List<(string option, string value)> Options = [];
-        
-    public string[] Speaker { get; private set; }
+
+    public string[] Speaker { get; private set; } = [];
 
     /// <summary>
     /// If it is an empty string or invalid, the background image will
     /// not change.
     /// </summary>
-    public string? BackgroundChange  = null;
+    public string? BackgroundChange;
 
-    public System.Collections.Generic.Dictionary<string, string>? SpeakerChanges = null;
+    public Dictionary<string, string>? SpeakerChanges;
     
-    public string? TitleChange = null;
+    public string? TitleChange;
 
     public DialogNode(){}
     
-    public DialogNode(Dictionary data)
+    public DialogNode(GDictionary data)
     {
         ID = data["id"].AsString();
         Text = data["text"].AsString();
         Speaker = data["speaker"].AsStringArray();
-        BackgroundChange = data.GetValueOrDefault("background").AsString();
         InitializeOptions(data["options"].AsGodotArray());
+        if (data.ContainsKey("changes"))
+            InitializeChanges(data["changes"].AsGodotDictionary());
     }
 
-    private void InitializeOptions(Array data)
+    private void InitializeOptions(GArray data)
     {
         foreach (var item in data)
         {
@@ -53,7 +55,7 @@ public class DialogNode
         }
     }
 
-    private void InitializeChanges(Dictionary data)
+    private void InitializeChanges(GDictionary data)
     {
         foreach (var item in data)
         {
@@ -74,7 +76,7 @@ public class DialogNode
         }
     }
     
-    private void InitializeSpeakerChanges(Dictionary data)
+    private void InitializeSpeakerChanges(GDictionary data)
     {
         SpeakerChanges = [];
         foreach (var item in data)

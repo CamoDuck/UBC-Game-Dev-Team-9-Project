@@ -1,6 +1,7 @@
 using System;
-using Godot.Collections;
-using Array = Godot.Collections.Array;
+using System.Collections.Generic;
+using GArray = Godot.Collections.Array;
+using GDictionary = Godot.Collections.Dictionary;
 
 namespace Team9Game.Scripts.Dialog;
 
@@ -10,7 +11,7 @@ public class DialogContext
     
     public string ID { get; private set; }
 
-    public System.Collections.Generic.Dictionary<string, DialogNode> Nodes = [];
+    public Dictionary<string, DialogNode> Nodes = [];
     
     public string StartID { get;private set; }
     
@@ -21,9 +22,9 @@ public class DialogContext
     /// <br/>
     /// value: character portrait uri
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, string> Characters = [];
+    public Dictionary<string, string> Characters = [];
 
-    public DialogContext(Dictionary dialogData)
+    public DialogContext(GDictionary dialogData)
     {
         if (!CheckData(dialogData))
             throw new ArgumentException("Input dictionary is not a valid dialog data");
@@ -37,13 +38,13 @@ public class DialogContext
     
     public DialogContext(){}
 
-    private bool CheckData(Dictionary dialogData)
+    private bool CheckData(GDictionary dialogData)
     {
         var type = dialogData["type"].AsString();
         return type == "dialog";
     }
 
-    private void InitializeChar(Dictionary dialogData)
+    private void InitializeChar(GDictionary dialogData)
     {
         foreach (var item in dialogData)
         {
@@ -53,7 +54,7 @@ public class DialogContext
         }
     }
 
-    private void InitializeNode(Array array)
+    private void InitializeNode(GArray array)
     {
         foreach (var item in array)
         {
