@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Team9Game.Scripts.Dialog;
 
@@ -20,9 +21,11 @@ public partial class DialogOptionUi : Control
 
 	private bool _ignoreFirstNextRelease;
 
+	public Stack<(string, int)> ChoicesStack => runner.ChoicesStack;
+
 	#region UIInitialize
 	[Export]
-	public VBoxContainer ChoicesStack { get; set; }
+	public VBoxContainer ChoicesContainer { get; set; }
 	
 	[Export]
 	public Label TextLabel { get; set; }
@@ -76,7 +79,7 @@ public partial class DialogOptionUi : Control
 
 	#region Choice Selection
 	private void ClearChoices()
-		=> ClearStack(ChoicesStack);
+		=> ClearStack(ChoicesContainer);
 	private void ClearStack(BoxContainer container)
 	{
 		var choices = container.GetChildren();
@@ -116,14 +119,12 @@ public partial class DialogOptionUi : Control
 
 	private void InitializeChoice(string[] choices)
 	{
-
-		
 		var ind = 0;
 		foreach (var choice in choices)
 		{
 			var choiceBtn = NewChoiceUI(choice, ind++);
 			choiceBtn.Pressed += () => OnChoiceSelected(choiceBtn);
-			ChoicesStack.AddChild(choiceBtn);
+			ChoicesContainer.AddChild(choiceBtn);
 		}
 	}
 	#endregion

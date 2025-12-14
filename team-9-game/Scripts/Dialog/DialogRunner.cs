@@ -6,12 +6,17 @@ namespace Team9Game.Scripts.Dialog;
 
 public class DialogRunner(DialogContext context)
 {
+    /// <summary>
+    /// Choose ur current choice here
+    /// </summary>
+    public Stack<(string, int)> ChoicesStack { get; } = [];
+    
     public Texture2D CurrentImage { get; private set; }
         = ResourceLoader.Load<Texture2D>(context.InitialBackGroundUri);
     
     private DialogNode _currentNode = new();
 
-    public Dictionary<string, Texture2D> SpeakerPortraits { get; private set; }
+    public Dictionary<string, Texture2D> SpeakerPortraits { get; }
         = GetPortrait(context.Characters);
     
     public string Title { get; private set; }
@@ -50,10 +55,12 @@ public class DialogRunner(DialogContext context)
     {
         var id = _currentNode.Options[choiceIndex].value;
         if (id == "end") return true;
+        ChoicesStack.Push((_currentNode.ID, choiceIndex));
         _currentNode = _context.Nodes[id];
         Update();
         return false;
     }
+    
 
     private void Update()
     {

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bdo5g515mmve7" path="res://Scripts/Dialog/DialogOptionUi.cs" id="1_bsprr"]
 [ext_resource type="Texture2D" uid="uid://bp5oi5smkga01" path="res://Resources/Images/Dialog/Example/tmp/text_background.png" id="3_6nals"]
 
-[node name="DialogOptionUI" type="Control" node_paths=PackedStringArray("ChoicesStack", "TextLabel", "SpeakerLabel", "BackgroundImage", "SpeakerStack")]
+[node name="DialogOptionUI" type="Control" node_paths=PackedStringArray("ChoicesContainer", "TextLabel", "SpeakerLabel", "BackgroundImage", "SpeakerStack")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bsprr")
-ChoicesStack = NodePath("VBoxContainer/ChoiceContainer/ChoiceVBox")
+ChoicesContainer = NodePath("VBoxContainer/ChoiceContainer/ChoiceVBox")
 TextLabel = NodePath("VBoxContainer/TextContainer/TextBackground/MarginContainer/TextLabel")
 SpeakerLabel = NodePath("VBoxContainer/TextContainer/TextBackground/MarginContainer/SpeakerLabel")
 BackgroundImage = NodePath("Background")
