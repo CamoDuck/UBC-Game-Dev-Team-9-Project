@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4q1efmwk1bh4"]
+
+[ext_resource type="Script" uid="uid://bbsku3h3innq2" path="res://Scripts/Combat/Test/MeleeAttack.cs" id="1_pqxfa"]
+[ext_resource type="Shape2D" uid="uid://ci837vt82skku" path="res://Resources/Shapes/simicircle.res" id="2_o2ghm"]
+[ext_resource type="Texture2D" uid="uid://dqipschqcfrs8" path="res://Resources/Images/SemiCircle.png" id="3_8supx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbbvq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8supx")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="MeleeAttack" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_pqxfa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5707964
+scale = Vector2(4.5, 4.5)
+shape = ExtResource("2_o2ghm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-112, 0)
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_fbbvq")
+animation = &"new_animation"
