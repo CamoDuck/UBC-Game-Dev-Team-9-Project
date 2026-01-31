@@ -9,3 +9,5 @@ Team members:
 - Khang Nguyen
 - Zach Fulton
 - Em
+- Manny
+- lksfnzlsk
