@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ey1girwcr6yg"]
+
+[ext_resource type="Script" uid="uid://ctsnjh4su1vlr" path="res://Scripts/GameManager.cs" id="1_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://b2e3lexeet7np" path="res://Scenes/player_controller.tscn" id="2_3dryh"]
+[ext_resource type="Texture2D" uid="uid://cfj3rwd6bpu6h" path="res://icon.svg" id="2_wowpa"]
+[ext_resource type="Script" uid="uid://uqsa0u7ufewo" path="res://Scripts/CameraScript.cs" id="3_wowpa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
+size = Vector2(1336, 40)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("playerController", "mainCamera")]
+script = ExtResource("1_wrm1d")
+playerController = NodePath("PlayerController")
+mainCamera = NodePath("Camera2D")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(516, 493)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(141, 10)
+shape = SubResource("RectangleShape2D_jjgbg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/CollisionShape2D"]
+texture = ExtResource("2_wowpa")
+
+[node name="PlayerController" parent="." instance=ExtResource("2_3dryh")]
+position = Vector2(488, 404)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_wowpa")

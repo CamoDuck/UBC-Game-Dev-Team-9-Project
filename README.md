@@ -1,6 +1,7 @@
 # UBC-Game-Dev-Team-9-Project
 
 Team members:
+- Andrew Zhu
 - Alwyn Mui
 - Ruoyu Xu
 - Alwyn Mui
@@ -9,4 +10,4 @@ Team members:
 - Zach Fulton
 - Em
 - Manny
-lksfnzlsk
+- lksfnzlsk
