@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkubihkbhps5g"]
+
+[ext_resource type="PackedScene" uid="uid://b2e3lexeet7np" path="res://Scenes/player_controller.tscn" id="2_1rohx"]
+[ext_resource type="Script" uid="uid://c6hr67cmncmqf" path="res://Scripts/Combat/Test/PlayerTESTcs.cs" id="3_1kmj6"]
+[ext_resource type="PackedScene" uid="uid://b34s660y31s1n" path="res://Scenes/Combat/Health.tscn" id="4_26vwd"]
+[ext_resource type="Script" uid="uid://dky0tm4t15v2s" path="res://Scripts/Combat/Test/Enemy.cs" id="5_nkb6t"]
+[ext_resource type="PackedScene" uid="uid://be6wlq1op47b0" path="res://Scenes/gravity.tscn" id="6_h37km"]
+[ext_resource type="Texture2D" uid="uid://dxn1gq0smbu3x" path="res://Resources/Images/Player/Player_TEMP.jpg" id="7_ew865"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd4wd"]
+size = Vector2(1336, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbw4v"]
+size = Vector2(128, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nibn"]
+size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_muu3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ew865")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muu3f"]
+size = Vector2(128, 130)
+
+[node name="CombatTest" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(516, 493)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(141, 10)
+shape = SubResource("RectangleShape2D_jd4wd")
+
+[node name="Player" parent="." instance=ExtResource("2_1rohx")]
+z_index = 10
+position = Vector2(142, 403)
+script = ExtResource("3_1kmj6")
+
+[node name="Health" parent="Player" instance=ExtResource("4_26vwd")]
+
+[node name="Hitbox" type="Area2D" parent="Player/Health"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Health/Hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_gbw4v")
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(709, 409)
+script = ExtResource("5_nkb6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_7nibn")
+
+[node name="Gravity" parent="Enemy" instance=ExtResource("6_h37km")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_muu3f")
+
+[node name="Health" parent="Enemy" instance=ExtResource("4_26vwd")]
+
+[node name="Hitbox" type="Area2D" parent="Enemy/Health"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Health/Hitbox"]
+shape = SubResource("RectangleShape2D_muu3f")
