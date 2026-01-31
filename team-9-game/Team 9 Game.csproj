@@ -5,4 +5,14 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Team9Game</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Combat\Attack.cs.uid" />
+    <Content Include="Scripts\Combat\AttackCalculator.cs.uid" />
+    <Content Include="Scripts\Combat\AttackSource.cs.uid" />
+    <Content Include="Scripts\Combat\Health.cs.uid" />
+    <Content Include="Scripts\Dialog\Example\DialogExample.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\Combat\Test\" />
+  </ItemGroup>
 </Project>
