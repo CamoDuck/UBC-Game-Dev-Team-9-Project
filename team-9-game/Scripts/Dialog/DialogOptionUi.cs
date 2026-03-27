@@ -80,6 +80,7 @@ public partial class DialogOptionUi : Control
 	#region Choice Selection
 	private void ClearChoices()
 		=> ClearStack(ChoicesContainer);
+	
 	private void ClearStack(BoxContainer container)
 	{
 		var choices = container.GetChildren();
