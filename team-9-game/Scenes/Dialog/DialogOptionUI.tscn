@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://g2ay0jxx7j3c"]
+
+[ext_resource type="Script" uid="uid://bdo5g515mmve7" path="res://Scripts/Dialog/DialogOptionUi.cs" id="1_bsprr"]
+[ext_resource type="Texture2D" uid="uid://bp5oi5smkga01" path="res://Resources/Images/Dialog/Example/tmp/text_background.png" id="3_6nals"]
+
+[node name="DialogOptionUI" type="Control" node_paths=PackedStringArray("ChoicesContainer", "TextLabel", "SpeakerLabel", "BackgroundImage", "SpeakerStack")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bsprr")
+ChoicesContainer = NodePath("VBoxContainer/ChoiceContainer/ChoiceVBox")
+TextLabel = NodePath("VBoxContainer/TextContainer/TextBackground/MarginContainer/TextLabel")
+SpeakerLabel = NodePath("VBoxContainer/TextContainer/TextBackground/MarginContainer/SpeakerLabel")
+BackgroundImage = NodePath("Background")
+SpeakerStack = NodePath("MarginContainer/SpeakerStack")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeakerStack" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChoiceContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 60
+
+[node name="ChoiceVBox" type="VBoxContainer" parent="VBoxContainer/ChoiceContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TextContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+size_flags_vertical = 8
+tooltip_text = "
+"
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="TextBackground" type="TextureRect" parent="VBoxContainer/TextContainer"]
+layout_mode = 2
+texture = ExtResource("3_6nals")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TextContainer/TextBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeakerLabel" type="Label" parent="VBoxContainer/TextContainer/TextBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Narrator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextLabel" type="Label" parent="VBoxContainer/TextContainer/TextBackground/MarginContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Hello World! What is this? I like Godot! We are making a 2D game! And don't make it too long!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
