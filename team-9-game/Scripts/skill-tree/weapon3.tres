@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://wpn3wepres"]
+
+[ext_resource type="Texture2D" uid="uid://byx4kd5s0wy28" path="res://Icons/weapon3.png" id="1_h50x0"]
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://TalentResource.cs" id="1_script"]
+[ext_resource type="Resource" uid="uid://wpn4wepres" path="res://weapon4.tres" id="2_wpn4"]
+
+[resource]
+script = ExtResource("1_script")
+TalentIcon = ExtResource("1_h50x0")
+HideUntilUnlocked = true
+AbilityName = "Meat Cleaver"
+WeaponDescription = "A heavy iron cleaver caked in drying ichor. It possesses a gluttonous weight, turning simple swings into bone-shattering executions."
+UnlockTalents = Array[ExtResource("1_script")]([ExtResource("2_wpn4")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"

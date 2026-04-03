@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://2ua6vkfka8e1"]
+
+[ext_resource type="Texture2D" uid="uid://pw1echm4gsvt" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Script" uid="uid://w8xdqt5dosr8" path="res://ItemResource.cs" id="2_script"]
+
+[resource]
+script = ExtResource("2_script")
+ItemName = "Test Item"
+Description = "A basic item for testing the inventory system."
+Icon = ExtResource("1_icon")
+MaxStackSize = 64
+IsConsumable = false
+metadata/_custom_type_script = "uid://w8xdqt5dosr8"

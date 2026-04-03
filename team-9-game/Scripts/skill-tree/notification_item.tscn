@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://djkg7x2ajclog"]
+
+[ext_resource type="Script" path="res://NotificationItem.cs" id="1_ni"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_notif"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 10.0
+bg_color = Color(0.12, 0.15, 0.2, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9, 0.8, 0.2, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_notif"]
+font_size = 20
+font_color = Color(1, 1, 1, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="NotificationItem" type="PanelContainer" node_paths=PackedStringArray("MessageLabel", "IconRect")]
+custom_minimum_size = Vector2(300, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_notif")
+script = ExtResource("1_ni")
+MessageLabel = NodePath("HBoxContainer/Label")
+IconRect = NodePath("HBoxContainer/Icon")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unlocked: New Talent"
+label_settings = SubResource("LabelSettings_notif")
+vertical_alignment = 1
+autowrap_mode = 2
