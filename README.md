@@ -8,6 +8,6 @@ Team members:
 - Maysam Farahani
 - Khang Nguyen
 - Zach Fulton
-- Em
+- Emilia Onar
 - Manny
 
