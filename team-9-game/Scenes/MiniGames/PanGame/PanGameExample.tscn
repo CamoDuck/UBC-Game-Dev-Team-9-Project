@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://4jxi4u7ac6um"]
+
+[ext_resource type="PackedScene" uid="uid://b3pmwve7fai3w" path="res://Scenes/MiniGames/PanGame/PanGame.tscn" id="1_gqwa5"]
+[ext_resource type="Script" uid="uid://dndjd4jblof2t" path="res://Scripts/MiniGames/PanGame/PanGameExample.cs" id="1_m5cxk"]
+[ext_resource type="Texture2D" uid="uid://cfj3rwd6bpu6h" path="res://icon.svg" id="2_m5cxk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xbef"]
+
+[node name="PanGameExample" type="Node2D" node_paths=PackedStringArray("PanGame", "Food1", "Food2")]
+script = ExtResource("1_m5cxk")
+PanGame = NodePath("PanGame")
+Food1 = NodePath("RigidBody2D3")
+Food2 = NodePath("RigidBody2D2")
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+position = Vector2(632, 59)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_3xbef")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D3"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_m5cxk")
+metadata/_edit_lock_ = true
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(500, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_3xbef")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_m5cxk")
+
+[node name="PanGame" parent="." instance=ExtResource("1_gqwa5")]
+CountdownTime = nan
+
+[connection signal="OnGameFinished" from="PanGame" to="." method="HandleGameFinished"]
