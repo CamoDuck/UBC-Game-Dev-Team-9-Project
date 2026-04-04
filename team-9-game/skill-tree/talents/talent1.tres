@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://pjcg7xxu3ic1"]
+
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://skill-tree/TalentResource.cs" id="1_2hy2b"]
+[ext_resource type="Resource" uid="uid://ce6g8uibwukh8" path="res://skill-tree/talents/talent2.tres" id="3_ogfk3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_272xf"]
+
+[resource]
+script = ExtResource("1_2hy2b")
+TalentIcon = SubResource("CompressedTexture2D_272xf")
+AbilityName = "1"
+UnlockTalents = Array[ExtResource("1_2hy2b")]([ExtResource("3_ogfk3")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://wpn5wepres"]
+
+[ext_resource type="Texture2D" uid="uid://dx7x8uoye70oh" path="res://skill-tree/Icons/weapon5.png" id="1_cpgoe"]
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://skill-tree/TalentResource.cs" id="1_script"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rrf8k"]
+
+[sub_resource type="Resource" id="Resource_cpgoe"]
+script = ExtResource("1_script")
+TalentIcon = SubResource("CompressedTexture2D_rrf8k")
+metadata/_custom_type_script = "uid://f2urfugx2mt3"
+
+[resource]
+script = ExtResource("1_script")
+TalentIcon = ExtResource("1_cpgoe")
+HideUntilUnlocked = true
+AbilityName = "The Final Harvest"
+WeaponDescription = "The pinnacle of sacrificial craft. This blade no longer cuts flesh—it reaps the very essence of the living, surrounded by a permanent mist of crystallized blood."
+UnlockTalents = Array[ExtResource("1_script")]([SubResource("Resource_cpgoe")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"

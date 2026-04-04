@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://jg7d2xajclog"]
+
+[ext_resource type="Script" uid="uid://cyqhu6turjfgw" path="res://skill-tree/InventoryUI.cs" id="1_gf3dx"]
+[ext_resource type="PackedScene" uid="uid://o5pn00xn8o3h" path="res://skill-tree/inventory_slot.tscn" id="2_34y5v"]
+[ext_resource type="Resource" uid="uid://2ua6vkfka8e1" path="res://skill-tree/items/item1.tres" id="3_item1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_MainPanel"]
+content_margin_left = 40.0
+content_margin_top = 30.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+bg_color = Color(0.1, 0.13, 0.18, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.4, 0.55, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 36
+font_color = Color(0.85, 0.9, 1, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 0.7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_subtitle"]
+font_size = 15
+font_color = Color(0.55, 0.65, 0.8, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_RedNormal"]
+bg_color = Color(0.55, 0.15, 0.15, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.3, 0.3, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_RedHover"]
+bg_color = Color(0.75, 0.22, 0.22, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.4, 0.4, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_DebugBtn"]
+bg_color = Color(0.18, 0.22, 0.28, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.5, 0.4, 0.5)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_NavNormal"]
+bg_color = Color(0.2, 0.27, 0.36, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.55, 0.75, 0.5)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_NavHover"]
+bg_color = Color(0.3, 0.42, 0.58, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.7, 1, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_NavDisabled"]
+bg_color = Color(0.12, 0.15, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.7, 1, 0.4)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="InventoryUI" type="Control" unique_id=632803559 node_paths=PackedStringArray("InventoryGrid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gf3dx")
+InventorySlotScene = ExtResource("2_34y5v")
+InventoryGrid = NodePath("CenterContainer/PanelContainer/VBoxContainer/InventoryGrid")
+DebugItems = Array[Resource]([ExtResource("3_item1")])
+
+[node name="Background" type="ColorRect" parent="." unique_id=5211988]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.09, 0.13, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2016880256]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1138099968]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_MainPanel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1268616065]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1877266905]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/Header" unique_id=718046774]
+layout_mode = 2
+text = "BACKPACK"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/Header" unique_id=1234332278]
+layout_mode = 2
+text = "Drag items between slots to rearrange your loot"
+label_settings = SubResource("LabelSettings_subtitle")
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=12002530]
+layout_mode = 2
+
+[node name="InventoryGrid" type="GridContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1096421386]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 6
+
+[node name="CloseButton" type="Button" parent="." unique_id=1275532548]
+custom_minimum_size = Vector2(150, 48)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 68.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_RedNormal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_RedHover")
+text = "✕  Close"
+
+[node name="AddButton" type="Button" parent="." unique_id=328730091]
+custom_minimum_size = Vector2(150, 48)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 195.0
+offset_right = 170.0
+offset_bottom = 243.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_DebugBtn")
+text = "＋  Debug Loot"
+
+[node name="TalentButton" type="Button" parent="." unique_id=1172569729]
+custom_minimum_size = Vector2(150, 48)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 170.0
+offset_bottom = 68.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_NavNormal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_NavHover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_NavDisabled")
+text = "🌟  Talents"
+
+[node name="WeaponButton" type="Button" parent="." unique_id=1065056433]
+custom_minimum_size = Vector2(150, 48)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 78.0
+offset_right = 170.0
+offset_bottom = 126.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_NavNormal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_NavHover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_NavDisabled")
+text = "⚔  Weapons"
+
+[node name="InventoryButton" type="Button" parent="." unique_id=1184029508]
+custom_minimum_size = Vector2(150, 48)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 136.0
+offset_right = 170.0
+offset_bottom = 184.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_NavNormal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_NavHover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_NavDisabled")
+disabled = true
+text = "🎒  Inventory"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="AddButton" to="." method="_on_add_random_item_pressed"]
+[connection signal="pressed" from="TalentButton" to="." method="_on_talent_button_pressed"]
+[connection signal="pressed" from="WeaponButton" to="." method="_on_weapon_button_pressed"]
+[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]

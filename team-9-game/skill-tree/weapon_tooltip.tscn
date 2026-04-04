@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://csh6i3waa88op"]
+
+[ext_resource type="Script" uid="uid://b5okq011w7p2r" path="res://skill-tree/WeaponTooltip.cs" id="1_1c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tooltip"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.08, 0.1, 0.15, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.8, 0.2, 0.85)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 22
+font_color = Color(0.95, 0.88, 0.35, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_desc"]
+font_size = 14
+font_color = Color(0.75, 0.8, 0.9, 1)
+line_spacing = 4
+
+[node name="WeaponToolTip" type="PanelContainer" unique_id=744584563]
+custom_minimum_size = Vector2(280, 0)
+offset_right = 280.0
+offset_bottom = 120.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tooltip")
+script = ExtResource("1_1c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_title")
+
+[node name="CloseUpRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=152805743]
+custom_minimum_size = Vector2(248, 200)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Divider" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+modulate = Color(0.9, 0.8, 0.2, 0.5)
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer" unique_id=969448227]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_desc")
+autowrap_mode = 3

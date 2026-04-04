@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmgrquest01hq"]
+
+[ext_resource type="Script" path="res://Scripts/Progression/QuestManager.cs" id="1_qm"]
+[ext_resource type="Script" path="res://Scripts/Progression/QuestResource.cs" id="2_qres"]
+[ext_resource type="Resource" uid="uid://bquestkill5x1" path="res://Resources/Quests/quest_kill_five.tres" id="3_q1"]
+
+[node name="QuestManager" type="Node"]
+script = ExtResource("1_qm")
+TrackedQuests = Array[ExtResource("2_qres")]([ExtResource("3_q1")])

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://wpn2wepres"]
+
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://skill-tree/TalentResource.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bcrg53tdsrrb3" path="res://skill-tree/Icons/weapon2.png" id="1_x802m"]
+[ext_resource type="Resource" uid="uid://wpn3wepres" path="res://skill-tree/weapon3.tres" id="2_wpn3"]
+
+[resource]
+script = ExtResource("1_script")
+TalentIcon = ExtResource("1_x802m")
+HideUntilUnlocked = true
+AbilityName = "Serrated Steak Knife"
+WeaponDescription = "Its jagged edge is designed to tear rather than cut. Every strike is a messy prayer, leaving behind ragged wounds that refuse to close."
+UnlockTalents = Array[ExtResource("1_script")]([ExtResource("2_wpn3")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"

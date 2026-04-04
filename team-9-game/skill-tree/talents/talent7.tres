@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://becrpvuysomae"]
+
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://skill-tree/TalentResource.cs" id="1_tixwb"]
+[ext_resource type="Resource" uid="uid://u7kw1qnaga5y" path="res://skill-tree/talents/talent8.tres" id="2_wkn65"]
+[ext_resource type="Resource" uid="uid://dckwiiiroekin" path="res://skill-tree/talents/talent9.tres" id="3_xoe1j"]
+
+[resource]
+script = ExtResource("1_tixwb")
+UnlockTalents = Array[ExtResource("1_tixwb")]([ExtResource("2_wkn65"), ExtResource("3_xoe1j")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"

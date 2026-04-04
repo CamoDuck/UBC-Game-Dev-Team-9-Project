@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://o5pn00xn8o3h"]
+
+[ext_resource type="Script" uid="uid://b4qwx6w25nmuq" path="res://skill-tree/InventorySlot.cs" id="1_42eed"]
+[ext_resource type="StyleBox" uid="uid://c6pxybk462718" path="res://skill-tree/talent_icon_style.tres" id="2_style"]
+
+[node name="InventorySlot" type="PanelContainer" unique_id=609895760 node_paths=PackedStringArray("ItemIcon", "StackCountLabel")]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("2_style")
+script = ExtResource("1_42eed")
+ItemIcon = NodePath("TextureRect")
+StackCountLabel = NodePath("Label")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1921913034]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=1116409852]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+horizontal_alignment = 2
+vertical_alignment = 2

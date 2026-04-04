@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2notifsysqm1"]
+
+[ext_resource type="Script" path="res://skill-tree/NotificationSystem.cs" id="1_ns"]
+
+[node name="NotificationSystem" type="Node"]
+script = ExtResource("1_ns")
