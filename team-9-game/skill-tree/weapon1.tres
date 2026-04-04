@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://wpn1wepres"]
+
+[ext_resource type="Texture2D" uid="uid://da540otmbql8m" path="res://skill-tree/Icons/weapon1.png" id="1_ntgkx"]
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://skill-tree/TalentResource.cs" id="1_script"]
+[ext_resource type="Resource" uid="uid://wpn2wepres" path="res://skill-tree/weapon2.tres" id="2_wpn2"]
+
+[resource]
+script = ExtResource("1_script")
+TalentIcon = ExtResource("1_ntgkx")
+HideUntilUnlocked = true
+AbilityName = "Butter Spreader"
+WeaponDescription = "A blunt, silvered blade grafted to a human femur. It was never meant for combat, but in desperate hands, even a dull edge can bruise the soul."
+UnlockTalents = Array[ExtResource("1_script")]([ExtResource("2_wpn2")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"

@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://dckwiiiroekin"]
-
-[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://TalentResource.cs" id="1_f3s6g"]
-
-[resource]
-script = ExtResource("1_f3s6g")
-metadata/_custom_type_script = "uid://f2urfugx2mt3"

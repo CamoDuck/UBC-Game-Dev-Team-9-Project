@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4statsmgr9k2"]
+
+[ext_resource type="Script" path="res://Scripts/Progression/StatisticsManager.cs" id="1_sm"]
+
+[node name="StatisticsManager" type="Node"]
+script = ExtResource("1_sm")

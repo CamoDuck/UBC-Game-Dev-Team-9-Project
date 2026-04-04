@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://dkiqmva2dx5nq"]
-
-[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://TalentResource.cs" id="2_t2qnw"]
-[ext_resource type="Resource" uid="uid://bwl4va2kyd0o5" path="res://talents/talent6.tres" id="2_yjer4"]
-
-[resource]
-script = ExtResource("2_t2qnw")
-UnlockTalents = Array[ExtResource("2_t2qnw")]([ExtResource("2_yjer4")])
-metadata/_custom_type_script = "uid://f2urfugx2mt3"

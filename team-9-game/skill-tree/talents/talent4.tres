@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TalentResource" format=3 uid="uid://cb3ptqs1y40ji"]
+
+[ext_resource type="Script" uid="uid://f2urfugx2mt3" path="res://skill-tree/TalentResource.cs" id="1_gohq2"]
+[ext_resource type="Texture2D" uid="uid://nhstsmmqtcoe" path="res://skill-tree/Icons/heart-icon-valentine-2.png" id="2_h3l8n"]
+[ext_resource type="Resource" uid="uid://di588spngq72l" path="res://skill-tree/talents/talent10.tres" id="3_x6ms4"]
+
+[resource]
+script = ExtResource("1_gohq2")
+TalentIcon = ExtResource("2_h3l8n")
+UnlockTalents = Array[ExtResource("1_gohq2")]([ExtResource("3_x6ms4")])
+metadata/_custom_type_script = "uid://f2urfugx2mt3"
