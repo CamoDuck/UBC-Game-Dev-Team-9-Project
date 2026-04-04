@@ -32,6 +32,7 @@ public partial class PanGame : Node2D
 	private float RotationSpeed;
 	private bool left;
 	private List<RigidBody2D> foods = [];
+	private bool initialized = false;
 	
 	private Vector2 Size => GetViewportRect().Size;
 
@@ -71,10 +72,15 @@ public partial class PanGame : Node2D
 	public override void _Process(double delta)
 	{
 		if (PauseGame) return;
-		Pan.SyncToPhysics = true;
+		
+		// GODOT FIX: INITIAL SIZE IS 64, 64
+		if (!initialized && Size == new Vector2(64, 64)) {}
+		else initialized = true;
+		
 		MousePosition = GetGlobalMousePosition();
 		Left = MousePosition.X < Center.X;
 		RotationSpeed += (Left? -RotationCoefficient : RotationCoefficient) * (float)delta * 60;
+		
 		CountdownTime -= (float)delta;
 		if (CountdownTime <= 0) EmitSignal(SignalName.OnGameFinished);
 	}
@@ -113,9 +119,11 @@ public partial class PanGame : Node2D
 
 	private bool CheckRigidBody(RigidBody2D food)
 	{ 
-		var ret = food.Position is { X: >= 0 } &&
+		// GODOT FIX
+		if (!initialized) return true;
+		
+		return food.Position is { X: >= 0 } &&
 		       food.Position.X <= Size.X && food.Position.Y <= Size.Y;
-		return ret;
 	}
 
 	/// <summary>
