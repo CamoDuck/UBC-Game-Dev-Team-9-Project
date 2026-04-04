@@ -118,6 +118,10 @@ public partial class PanGame : Node2D
 		return ret;
 	}
 
+	/// <summary>
+	/// Get foods that are still in the viewport.<br/>
+	/// Recommended: call this when OnGameFinished is triggered
+	/// </summary>
 	public RigidBody2D[] GetAvailableFood()
 	{
 		return foods.Where(CheckRigidBody).ToArray();

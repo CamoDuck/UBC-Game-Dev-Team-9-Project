@@ -14,7 +14,7 @@ public partial class PanGameExample : Node2D
 	{
 		PanGame.CountdownTime = 5; // Five seconds count down
 		GD.Print(Food1);
-		PanGame.AddFood(Food1);
+		PanGame.AddFood(Food1);// If you want to handle it yourself, just ignore AddFood
 		PanGame.AddFood(Food2);
 	}
 
@@ -26,6 +26,7 @@ public partial class PanGameExample : Node2D
 
 	private void HandleGameFinished()
 	{
+		// Callback Function
 		var availableRigid = PanGame.GetAvailableFood();
 		PanGame.PauseGame = true;
 		OS.Alert($"Game finished. {availableRigid.Length} left!");
