@@ -29,6 +29,7 @@ public partial class PanGameExample : Node2D
 		// Callback Function
 		var availableRigid = PanGame.GetAvailableFood();
 		PanGame.PauseGame = true;
+		GD.Print($"Game finished. {availableRigid.Length} left!");
 		OS.Alert($"Game finished. {availableRigid.Length} left!");
 	}
 }
